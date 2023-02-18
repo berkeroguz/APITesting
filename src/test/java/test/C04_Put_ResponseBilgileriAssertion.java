@@ -26,23 +26,23 @@ public class C04_Put_ResponseBilgileriAssertion {
     ve status line'in HTTP/1.1 200 OK oldugunu test ediniz
      */
     @Test
-    public void putRequest(){
+    public void putRequest() {
         // 1- Request icin gerekli url ve body
 
         String url = "https://jsonplaceholder.typicode.com/posts/70";
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("title","Ahmet");
-        jsonObject.put("body","Merhaba");
-        jsonObject.put("userId",10);
-        jsonObject.put("id",70);
+        jsonObject.put("title", "Ahmet");
+        jsonObject.put("body", "Merhaba");
+        jsonObject.put("userId", 10);
+        jsonObject.put("id", 70);
 
         // 2- İstenilen expected varsa data hazirla
 
         // 3- Response'i kaydet
         Response response = given().contentType(ContentType.JSON).
                 when().
-                    body(jsonObject.toString()).
-                    put(url);
+                body(jsonObject.toString()).
+                put(url);
 
         response.prettyPrint();
 
@@ -50,7 +50,7 @@ public class C04_Put_ResponseBilgileriAssertion {
 
         response.then().assertThat().statusCode(200).
                 contentType("application/json; charset=utf-8").
-                header("Server","cloudflare").
+                header("Server", "cloudflare").
                 statusLine("HTTP/1.1 200 OK");
         System.out.println(response.getHeaders());
     }

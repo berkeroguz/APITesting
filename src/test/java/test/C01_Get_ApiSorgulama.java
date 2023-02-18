@@ -3,6 +3,7 @@ package test;
 import io.restassured.response.Response;
 import org.junit.Test;
 
+import static io.restassured.RestAssured.authentication;
 import static io.restassured.RestAssured.given;
 
 public class C01_Get_ApiSorgulama {
@@ -19,7 +20,7 @@ public class C01_Get_ApiSorgulama {
 
 
         // 1- Göndereceğimiz Request icin gerek olan URL ve Body hazirla
-        String url="https://restful-booker.herokuapp.com/booking/1";
+        String url="https://restful-booker.herokuapp.com/booking/2";
 
         // 2- Expected Data hazirlanir
 
@@ -27,6 +28,11 @@ public class C01_Get_ApiSorgulama {
         Response response = given().when().get(url);
         response.prettyPrint();
         // Assertion yapılır
+        response.then().assertThat().
+                statusCode(200).
+                contentType("application/json; charset=utf-8").
+                header("Server","Cowboy").
+                statusLine("HTTP/1.1 200 OK");
 
 
     }
