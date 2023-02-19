@@ -30,7 +30,11 @@
             <artifactId>json</artifactId>
             <version>20160810</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.7.0</version>
+        </dependency>
     </dependencies>
 
 </project>

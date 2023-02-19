@@ -1,0 +1,55 @@
+package test;
+
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import org.json.JSONObject;
+import org.junit.Assert;
+import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
+
+public class C11_Get_ExpectedDataOlusturma {
+        /*
+    https://jsonplaceholder.typicode.com/posts/22 url'ine
+    bir GET request yolladigimizda donen response body’sinin
+    asagida verilen ile ayni oldugunu test ediniz
+   Response body :
+    {
+    "userId":3,
+    "id":22,
+    "title":"dolor sint quo a velit explicabo quia nam",
+    "body":"eos qui et ipsum ipsam suscipit aut\nsed omnis non odio\nexpedita earum mollitia molestiae aut atque rem suscipit\nnam impedit esse"
+    }
+     */
+
+    @Test
+    public void test01(){
+        // 1- Create url
+        String url = "https://jsonplaceholder.typicode.com/posts/22";
+
+        // 2- Expected Data Prepare
+        JSONObject expBody = new JSONObject();
+        expBody.put("userId",3);
+        expBody.put("id",22);
+        expBody.put("title","dolor sint quo a velit explicabo quia nam");
+        expBody.put("body","eos qui et ipsum ipsam suscipit aut\nsed omnis non odio\nexpedita ear" +
+                "um mollitia molestiae aut atque rem suscipit\nnam impedit esse");
+
+        System.out.println(expBody);
+
+        // 3- Save the response
+
+        Response response = given().when().get(url);
+
+        // In order to find releated field in body, we need convert response to jsonpath
+
+        JsonPath resJsonPath = response.jsonPath();
+
+        // 4- Assertion
+        Assert.assertEquals(expBody.get("userId"),resJsonPath.getInt("userId"));
+        Assert.assertEquals(expBody.get("id"),resJsonPath.getInt("id"));
+        Assert.assertEquals(expBody.get("title"),resJsonPath.getString("title"));
+        Assert.assertEquals(expBody.get("body"),resJsonPath.getString("body"));
+
+    }
+}
