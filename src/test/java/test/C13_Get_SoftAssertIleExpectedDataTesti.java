@@ -1,5 +1,6 @@
 package test;
 
+import baseURL.JsonPlaceHolderBaseUrl;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.json.JSONObject;
@@ -11,6 +12,7 @@ import static io.restassured.RestAssured.given;
 public class C13_Get_SoftAssertIleExpectedDataTesti {
     @Test
     public void test01(){
+
         // 1- Create url
         String url = "https://jsonplaceholder.typicode.com/posts/22";
 

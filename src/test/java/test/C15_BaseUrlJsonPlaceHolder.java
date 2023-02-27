@@ -17,7 +17,6 @@ public class C15_BaseUrlJsonPlaceHolder extends JsonPlaceHolderBaseUrl {
          request gonderdigimizde donen response’un status code’unun 200 oldugunu
          ve Response’ta 100 kayit oldugunu test edin.
         */
-
     /*
         2- https://jsonplaceholder.typicode.com/posts/44 endpointine bir GET
             request gonderdigimizde donen response’un status code’unun 200 oldugunu
@@ -31,6 +30,7 @@ public class C15_BaseUrlJsonPlaceHolder extends JsonPlaceHolderBaseUrl {
 
     @Test
     public void get01(){
+
         // 1- Prepeare url
 
         specJsonPlace.pathParam("pp1","posts");
